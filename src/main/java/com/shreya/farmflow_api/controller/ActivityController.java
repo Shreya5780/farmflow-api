@@ -154,9 +154,8 @@ public class ActivityController {
                     .collect(Collectors.toList());
         }
 
-        var latestWeather = weatherForecast.get(0);
         return activityRepository.findByCropIdOrderBySortOrderAsc(cropId).stream()
-                .map(activity -> riskService.assessRisk(activity, latestWeather))
+                .map(activity -> riskService.assessRisk(activity, weatherForecast))
                 .collect(Collectors.toList());
     }
 
